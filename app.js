@@ -1,5 +1,5 @@
-//jshint esversion:6
 
+require('dotenv').config()
 const express = require("express")
 const bodyParser = require("body-parser")
 const date = require(__dirname + '/date.js')
@@ -15,7 +15,7 @@ app.use(bodyParser.urlencoded({extended: true}))
 app.use(express.static("public"))
 
 mongoose.set('strictQuery', false)
-mongoose.connect('mongodb+srv://admin-hadi:178010Atlas@cluster0.ouzmlbq.mongodb.net/todolistDB')
+mongoose.connect(`mongodb+srv://${process.env.ATLAS_ID}:${process.env.ATLAS_PW}@cluster0.ouzmlbq.mongodb.net/todolistDB`)
 
 const itemsSchema = new mongoose.Schema ({
   name: {
